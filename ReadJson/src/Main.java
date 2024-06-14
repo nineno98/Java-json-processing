@@ -20,7 +20,8 @@ public class Main {
     private static void beolvasas() {
         try {
             Object obj = new JSONParser().parse(new FileReader("megrendelesek.json"));
-            System.out.println(obj);
+            JSONArray jsonArray = (JSONArray) obj;
+            System.out.println(jsonArray.get(0));
         }catch (IOException | ParseException e){
             System.out.println("beolvasas: "+e.getMessage());
         }
