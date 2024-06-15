@@ -25,6 +25,8 @@ public class Main {
             for(int i = 0; i<jsonArray.size(); i++){
                 JSONObject item = (JSONObject) jsonArray.get(i);
                 System.out.println(item.get("name"));
+                Dolgozo dolgozo = new Dolgozo((Integer) item.get("id"), (String) item.get("name"), (Integer) item.get("salary"));
+                dolgozok.add(dolgozo);
             }
         }catch (IOException | ParseException e){
             System.out.println("beolvasas: "+e.getMessage());
