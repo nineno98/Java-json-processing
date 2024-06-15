@@ -19,10 +19,13 @@ public class Main {
 
     private static void beolvasas() {
         try {
-            Object obj = new JSONParser().parse(new FileReader("megrendelesek.json"));
+            Object obj = new JSONParser().parse(new FileReader("dolgozok.json"));
             JSONArray jsonArray = (JSONArray) obj;
-            System.out.println(jsonArray.get(0));
 
+            for(int i = 0; i<jsonArray.size(); i++){
+                JSONObject item = (JSONObject) jsonArray.get(i);
+                System.out.println(item.get("name"));
+            }
         }catch (IOException | ParseException e){
             System.out.println("beolvasas: "+e.getMessage());
         }
