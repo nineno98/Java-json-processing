@@ -22,6 +22,7 @@ public class Main {
             Object obj = new JSONParser().parse(new FileReader("megrendelesek.json"));
             JSONArray jsonArray = (JSONArray) obj;
             System.out.println(jsonArray.get(0));
+
         }catch (IOException | ParseException e){
             System.out.println("beolvasas: "+e.getMessage());
         }
