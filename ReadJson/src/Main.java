@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,7 +17,24 @@ public class Main {
 
         beolvasas();
         kiiras();
+        //writeJsonFile();
 
+    }
+
+    private static void writeJsonFile() {
+        JSONArray arr = new JSONArray();
+        try {
+            for (int i = 0; i <dolgozok.size() ; i++) {
+                arr.add(dolgozok.get(i).parseToJsonObj());
+            }
+            System.out.println(arr.toJSONString());
+            FileWriter writer = new FileWriter("dolgozok.json", false);
+            writer.write(arr.toJSONString());
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("writeJsonFile: "+e.getMessage());
+        }
     }
 
     private static void kiiras() {

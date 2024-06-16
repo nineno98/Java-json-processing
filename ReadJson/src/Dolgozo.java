@@ -1,3 +1,5 @@
+import org.json.simple.JSONObject;
+
 public class Dolgozo {
 
     private int _id;
@@ -27,6 +29,14 @@ public class Dolgozo {
     }
     public void setFiizetes(int arg){
         _fizetes = arg;
+    }
+
+    public JSONObject parseToJsonObj(){
+        JSONObject obj = new JSONObject();
+        obj.put("index", _id);
+        obj.put("name", _nev);
+        obj.put("salary", _fizetes);
+        return obj;
     }
 
     @Override
