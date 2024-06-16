@@ -19,15 +19,14 @@ public class Main {
 
         //dolgozó törlése
         deleteDolgozo(2);
-        //writeJsonFile();
+        writeJsonFile();
 
 
 
     }
 
     private static void deleteDolgozo(int id) {
-        Optional<Dolgozo> dolgozoRemove = dolgozok.stream().filter(c -> c.getId() == id).findFirst();
-        System.out.println(dolgozoRemove);
+        dolgozok.removeIf(c -> c.getId() == id);
 
     }
 
