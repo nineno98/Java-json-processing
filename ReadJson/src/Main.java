@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -15,11 +14,20 @@ public class Main {
 
         beolvasas();
         kiiras();
-        Dolgozo ujDolgozo = addDolgozo();
-        dolgozok.add(ujDolgozo);
-        writeJsonFile();
+        //Dolgozo ujDolgozo = addDolgozo();
+        //dolgozok.add(ujDolgozo);
+
+        //dolgozó törlése
+        deleteDolgozo(2);
+        //writeJsonFile();
 
 
+
+    }
+
+    private static void deleteDolgozo(int id) {
+        Optional<Dolgozo> dolgozoRemove = dolgozok.stream().filter(c -> c.getId() == id).findFirst();
+        System.out.println(dolgozoRemove);
 
     }
 
@@ -63,7 +71,7 @@ public class Main {
             for (int i = 0; i <dolgozok.size() ; i++) {
                 arr.add(dolgozok.get(i).parseToJsonObj());
             }
-            System.out.println(arr.toJSONString());
+
             FileWriter writer = new FileWriter("dolgozok.json", false);
             writer.write(arr.toJSONString());
             writer.close();
