@@ -29,4 +29,8 @@ public class Dolgozo {
         _fizetes = arg;
     }
 
+    @Override
+    public String toString() {
+        return _id+", "+ _nev + ", "+_fizetes;
+    }
 }

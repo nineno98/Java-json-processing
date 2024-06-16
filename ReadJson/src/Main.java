@@ -14,7 +14,14 @@ public class Main {
     public static void main(String[] args) {
 
         beolvasas();
+        kiiras();
 
+    }
+
+    private static void kiiras() {
+        for(Dolgozo item : dolgozok){
+            System.out.println(item);
+        }
     }
 
     private static void beolvasas() {
@@ -24,8 +31,8 @@ public class Main {
 
             for(int i = 0; i<jsonArray.size(); i++){
                 JSONObject item = (JSONObject) jsonArray.get(i);
-                System.out.println(item.get("name"));
-                Dolgozo dolgozo = new Dolgozo((Integer) item.get("id"), (String) item.get("name"), (Integer) item.get("salary"));
+
+                Dolgozo dolgozo = new Dolgozo( Integer.parseInt(item.get("index").toString()) ,  item.get("name").toString(), Integer.parseInt(item.get("salary").toString()));
                 dolgozok.add(dolgozo);
             }
         }catch (IOException | ParseException e){
