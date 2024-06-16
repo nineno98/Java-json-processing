@@ -1,14 +1,12 @@
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 import java.io.FileReader;
-
 
 
 public class Main {
@@ -17,8 +15,46 @@ public class Main {
 
         beolvasas();
         kiiras();
-        //writeJsonFile();
+        Dolgozo ujDolgozo = addDolgozo();
+        dolgozok.add(ujDolgozo);
+        writeJsonFile();
 
+
+
+    }
+
+    private static Dolgozo addDolgozo() {
+
+        System.out.println("Adja meg a dolgzó nevét:");
+        String nev = bekeres();
+        System.out.println("Adja meg a dolgozó fizetését:");
+        int salary;
+        while (true){
+            try{
+                salary = Integer.parseInt(bekeres());
+                break;
+            }catch (Exception e){
+                System.out.println("Számot adj meg! "+e.getMessage());
+            }
+        }
+        Dolgozo Maxid = dolgozok.stream().max(Comparator.comparing(c -> c.getId())).get();
+        return new Dolgozo(Maxid.getId()+1, nev, salary);
+
+    }
+
+    private static String bekeres() {
+        Scanner scan = new Scanner(System.in);
+        String res = "";
+        while (true){
+            res = scan.nextLine();
+            if(!res.equals("")){
+
+                return res;
+            }
+            else {
+                System.out.println("Nem lehet a bemenet üres.");
+            }
+        }
     }
 
     private static void writeJsonFile() {
