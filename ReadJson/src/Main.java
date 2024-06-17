@@ -18,7 +18,7 @@ public class Main {
         //dolgozok.add(ujDolgozo);
 
         //dolgozó törlése
-        deleteDolgozo(2);
+        deleteDolgozo(3);
         writeJsonFile();
 
 
@@ -26,7 +26,16 @@ public class Main {
     }
 
     private static void deleteDolgozo(int id) {
-        dolgozok.removeIf(c -> c.getId() == id);
+        try{
+
+            if (dolgozok.removeIf(c -> c.getId() == id)){
+                System.out.println("Törlés sikeres.");
+            }
+            else System.out.println("Nincs ilyen azonosítóju dolgozó.");
+        }catch (Exception e){
+            System.out.println("deleteDolgozo: Nincs ilyen azonosítóju dolgozó.");
+        }
+
 
     }
 
